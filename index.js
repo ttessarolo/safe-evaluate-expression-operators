@@ -11,6 +11,7 @@ const day = hour * 24;
 const week = day * 7;
 const month = day * 30;
 const year = day * 365;
+
 let tz;
 
 const _str = (s) => (isString(s) ? s.trim().toLowerCase() : s);
