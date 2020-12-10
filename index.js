@@ -1,6 +1,6 @@
 'use strict';
 
-// OPERATORS
+const niceTry = require('nice-try');
 const isString = require('lodash.isstring');
 const isNumber = require('is-number');
 const moment = require('moment-timezone');
@@ -34,11 +34,15 @@ const _dateOrNum = (k) => {
 };
 
 const _array = (k) => {
-  return Array.isArray(k)
-    ? k.map((k) => k.toLowerCase())
-    : _str(k)
-        .split(',')
-        .map((x) => x.trim());
+  if (!k) return [];
+  if (Array.isArray(k)) return k;
+
+  const converted = niceTry(() => JSON.parse(k));
+  if (converted && Array.isArray(converted)) return converted;
+
+  return _str(k)
+    .split(',')
+    .map((x) => x.trim());
 };
 
 const _includesArray = (a, b) => {
