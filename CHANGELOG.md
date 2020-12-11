@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://bitbucket.org/ttessarolo/safe-evaluate-expression/branches/compare/v1.2.0%0Dv1.3.0) (2020-12-11)
+
+
+### Features
+
+* operators now are scoped in getOperators thus timezone is unique per call ([af329e8](https://github.com/ttessarolo/safe-evaluate-expression/commits/af329e8d8cc2c4f5eb1f5f18064d97579e90dc65))
+
 ## [1.2.0](https://bitbucket.org/ttessarolo/safe-evaluate-expression/branches/compare/v1.1.0%0Dv1.2.0) (2020-12-11)
 
 
