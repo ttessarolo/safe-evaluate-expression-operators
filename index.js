@@ -5,21 +5,15 @@ const isString = require('lodash.isstring');
 const isNumber = require('is-number');
 const moment = require('moment-timezone');
 
-const minute = 60000;
-const hour = minute * 60;
-const day = hour * 24;
-const week = day * 7;
-const month = day * 30;
-const year = day * 365;
-
 let tz;
 
-const _str = (s) => (isString(s) ? s.trim().toLowerCase() : s);
+const _str = (s) => (isString(s) ? s.trim().toLowerCase() : s || '');
 
 const _isDate = (k, format) => {
   if (!k) return [false, null];
+  const timezone = tz || moment.tz.guess();
 
-  const d = moment(k, format);
+  const d = moment(k, format).tz(timezone);
   const valid = d.isValid();
 
   return [valid, valid ? d.toDate() : k];
@@ -46,6 +40,7 @@ const _array = (k) => {
 };
 
 const _includesArray = (a, b) => {
+  if (!a || !b) return false;
   const a1 = _array(a);
   const b1 = _array(b);
 
@@ -78,7 +73,6 @@ const operators = {
     return _dateOrNum(num) <= _dateOrNum(what);
   },
   isEmpty(what) {
-    //return isEmpty(what);
     return (
       what === undefined ||
       what === null ||
@@ -88,6 +82,7 @@ const operators = {
     );
   },
   between(start, values) {
+    if (!values || !start) return false;
     const [v1, v2] = values.split('÷');
 
     return _dateOrNum(v1) <= start && _dateOrNum(v2) >= start;
@@ -98,8 +93,7 @@ const operators = {
     if (!valid) return false;
 
     const [date1, date2] = range.split('÷');
-
-    return _dateOrNum(date1) <= date && _dateOrNum(date2) >= date;
+    return moment(date).isBetween(date1, date2);
   },
   range(d, period) {
     const [valid, date] = _isDate(d);
@@ -107,36 +101,11 @@ const operators = {
     if (!valid) return false;
 
     const [value, unit] = period.split(' ');
-    let multiplier = 1;
+    const timezone = tz || moment.tz.guess();
 
-    switch (unit) {
-      case 'm':
-        multiplier = minute;
-        break;
-      case 'h':
-        multiplier = hour;
-        break;
-      case 'd':
-        multiplier = day;
-        break;
-      case 'w':
-        multiplier = week;
-        break;
-      case 'M':
-        multiplier = month;
-        break;
-      case 'y':
-        multiplier = year;
-        break;
-      default:
-        multiplier = 1;
-    }
-
-    const now = new Date().getTime();
-    const date1 = new Date(now - value * multiplier);
-    const date2 = new Date(now + value * multiplier);
-
-    return date1 <= date && date2 >= date;
+    const date1 = moment().tz(timezone).subtract(value, unit);
+    const date2 = moment().tz(timezone).add(value, unit);
+    return moment(date).isBetween(date1, date2);
   },
   inList(what, list) {
     return _includesArray(what, list);
