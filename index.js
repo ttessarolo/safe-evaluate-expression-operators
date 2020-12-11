@@ -5,72 +5,109 @@ const isString = require('lodash.isstring');
 const isNumber = require('is-number');
 const moment = require('moment-timezone');
 
-let tz;
+//let tz;
 
-const _str = (s) => (isString(s) ? s.trim().toLowerCase() : s || '');
+// const _str = (s) => (isString(s) ? s.trim().toLowerCase() : s || '');
 
-const _isDate = (k, format) => {
-  if (!k) return [false, null];
-  const timezone = tz || moment.tz.guess();
+// const _isDate = (k, format) => {
+//   if (!k) return [false, null];
+//   const timezone = tz || moment.tz.guess();
 
-  const d = moment(k, format).tz(timezone);
-  const valid = d.isValid();
+//   const d = moment(k, format).tz(timezone);
+//   const valid = d.isValid();
 
-  return [valid, valid ? d.toDate() : k];
-};
-const _dateOrNum = (k) => {
-  if (isNumber(k)) return Number(k);
+//   return [valid, valid ? d.toDate() : k];
+// };
+// const _dateOrNum = (k) => {
+//   if (isNumber(k)) return Number(k);
 
-  const [valid, date] = _isDate(k, moment.ISO_8601);
-  if (valid) return date;
+//   const [valid, date] = _isDate(k, moment.ISO_8601);
+//   if (valid) return date;
 
-  return k;
-};
+//   return k;
+// };
 
-const _array = (k) => {
-  if (!k) return [];
-  if (Array.isArray(k)) return k;
+// const _array = (k) => {
+//   if (!k) return [];
+//   if (Array.isArray(k)) return k;
 
-  const converted = niceTry(() => JSON.parse(k));
-  if (converted && Array.isArray(converted)) return converted;
+//   const converted = niceTry(() => JSON.parse(k));
+//   if (converted && Array.isArray(converted)) return converted;
 
-  return _str(k)
-    .split(',')
-    .map((x) => x.trim());
-};
+//   return _str(k)
+//     .split(',')
+//     .map((x) => x.trim());
+// };
 
-const _includesArray = (a, b) => {
-  if (!a || !b) return false;
-  const a1 = _array(a);
-  const b1 = _array(b);
+// const _includesArray = (a, b) => {
+//   if (!a || !b) return false;
+//   const a1 = _array(a);
+//   const b1 = _array(b);
 
-  return a1.some((k) => b1.includes(k));
-};
+//   return a1.some((k) => b1.includes(k));
+// };
 
 const operators = {
+  _tz: null,
+  _str: (s) => (isString(s) ? s.trim().toLowerCase() : s || ''),
+  _isDate(k, format) {
+    if (!k) return [false, null];
+    const timezone = this._tz || moment.tz.guess();
+
+    const d = moment(k, format).tz(timezone);
+    const valid = d.isValid();
+
+    return [valid, valid ? d.toDate() : k];
+  },
+  _dateOrNum(k) {
+    if (isNumber(k)) return Number(k);
+
+    const [valid, date] = this._isDate(k, moment.ISO_8601);
+    if (valid) return date;
+
+    return k;
+  },
+  _array(k) {
+    if (!k) return [];
+    if (Array.isArray(k)) return k;
+
+    const converted = niceTry(() => JSON.parse(k));
+    if (converted && Array.isArray(converted)) return converted;
+
+    return this._str(k)
+      .split(',')
+      .map((x) => x.trim());
+  },
+  _includesArray(a, b) {
+    if (!a || !b) return false;
+    const a1 = this._array(a);
+    const b1 = this._array(b);
+
+    return a1.some((k) => b1.includes(k));
+  },
   equals(str, what) {
-    return _str(str) === _str(what);
+    return this._str(str) === this._str(what);
   },
   is(num, what) {
-    return _dateOrNum(num) === _dateOrNum(what);
+    return this._dateOrNum(num) === this._dateOrNum(what);
   },
   beginsWith(str, what) {
-    return _str(str).startsWith(_str(what));
+    return this._str(str).startsWith(this._str(what));
   },
   contains(str, what) {
-    return _str(str).includes(_str(what));
+    return this._str(str).includes(this._str(what));
   },
   greaterThan(num, what) {
-    return _dateOrNum(num) > _dateOrNum(what);
+    return this._dateOrNum(num) > this._dateOrNum(what);
   },
   greaterEqualThan(num, what) {
-    return _dateOrNum(num) >= _dateOrNum(what);
+    return this._dateOrNum(num) >= this._dateOrNum(what);
   },
   lessThan(num, what) {
-    return _dateOrNum(num) < _dateOrNum(what);
+    return this._dateOrNum(num) < this._dateOrNum(what);
   },
   lessEqualThan(num, what) {
-    return _dateOrNum(num) <= _dateOrNum(what);
+    return this._dateOrNum(num) <= this._dateOrNum(what);
   },
   isEmpty(what) {
     return (
@@ -85,10 +122,10 @@ const operators = {
     if (!values || !start) return false;
     const [v1, v2] = values.split('÷');
 
-    return _dateOrNum(v1) <= start && _dateOrNum(v2) >= start;
+    return this._dateOrNum(v1) <= start && this._dateOrNum(v2) >= start;
   },
   dateRange(d, range) {
-    const [valid, date] = _isDate(d);
+    const [valid, date] = this._isDate(d);
 
     if (!valid) return false;
 
@@ -96,24 +133,23 @@ const operators = {
     return moment(date).isBetween(date1, date2);
   },
   range(d, period) {
-    const [valid, date] = _isDate(d);
+    const [valid, date] = this._isDate(d);
 
     if (!valid) return false;
 
     const [value, unit] = period.split(' ');
-    const timezone = tz || moment.tz.guess();
+    const timezone = this._tz || moment.tz.guess();
 
     const date1 = moment().tz(timezone).subtract(value, unit);
     const date2 = moment().tz(timezone).add(value, unit);
     return moment(date).isBetween(date1, date2);
   },
   inList(what, list) {
-    return _includesArray(what, list);
+    return this._includesArray(what, list);
   },
 };
 
 module.exports = operators;
-module.exports.getOperators = ({ timezone }) => {
-  tz = timezone;
-  return operators;
+module.exports.getOperators = ({ timezone } = {}) => {
+  return { ...operators, _tz: timezone };
 };
