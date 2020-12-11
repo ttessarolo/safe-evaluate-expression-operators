@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://bitbucket.org/ttessarolo/safe-evaluate-expression/branches/compare/v1.1.0%0Dv1.2.0) (2020-12-11)
+
+
+### Features
+
+* now Support Timezone for date operators ([585b0fa](https://github.com/ttessarolo/safe-evaluate-expression/commits/585b0fafd29b4f277f120bc39db9530013515210))
+
 ## [1.1.0](https://bitbucket.org/ttessarolo/safe-evaluate-expression/branches/compare/v1.0.1%0Dv1.1.0) (2020-12-10)
 
 
