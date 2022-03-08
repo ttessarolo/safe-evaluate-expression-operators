@@ -7,7 +7,7 @@ const moment = require('moment-timezone');
 
 const operators = {
   _tz: null,
-  _str: (s) => (isString(s) ? s : ''), // (isString(s) ? s.trim().toLowerCase() : s || '')
+  _str: (s) => (isString(s) ? s : s || ''), // (isString(s) ? s.trim().toLowerCase() : s || '')
   _isDate(k, format) {
     if (!k) return [false, null];
     const timezone = this._tz || moment.tz.guess();
