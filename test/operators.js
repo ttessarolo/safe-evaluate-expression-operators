@@ -8,7 +8,7 @@ const evaluate = factory({
 });
 
 function runner({ ruleName, rule, metas, lists, expectedResult }) {
-  test(`${ruleName} should return ${expectedResult}`, async (t) => {
+  test(`${ruleName} should return ${expectedResult} [${Math.random().toFixed(2)}]`, async (t) => {
     const result = evaluate(rule.condition, metas, lists);
     t.deepEqual(expectedResult, result);
   });
@@ -25,6 +25,11 @@ const dataProvider = {
       rule: { condition: 'is(foo, bar)' },
       metas: { foo: 10, bar: 100 },
       expectedResult: false,
+    },
+    {
+      rule: { condition: 'is(bol1, bol2)' },
+      metas: { bol1: true, bol2: true },
+      expectedResult: true,
     },
   ],
   equals: [
@@ -54,7 +59,7 @@ const dataProvider = {
   contains: [
     {
       rule: { condition: 'contains(haystack, needle)' },
-      metas: { haystack: 'The quick brown fox', needle: 'brown' },
+      metas: { haystack: 'The quick Brown fox', needle: 'Brown' },
       expectedResult: true,
     },
   ],
@@ -148,8 +153,8 @@ const dataProvider = {
   inList: [
     {
       rule: { condition: 'inList(needle, haystack )' },
-      metas: { needle: 'foobar' },
-      lists: { haystack: ['foo', 'bar', 'foobar'] },
+      metas: { needle: 'Foobar' },
+      lists: { haystack: ['foo', 'bar', 'Foobar'] },
       expectedResult: true,
     },
     {

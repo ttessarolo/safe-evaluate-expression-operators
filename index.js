@@ -5,51 +5,9 @@ const isString = require('lodash.isstring');
 const isNumber = require('is-number');
 const moment = require('moment-timezone');
 
-//let tz;
-
-// const _str = (s) => (isString(s) ? s.trim().toLowerCase() : s || '');
-
-// const _isDate = (k, format) => {
-//   if (!k) return [false, null];
-//   const timezone = tz || moment.tz.guess();
-
-//   const d = moment(k, format).tz(timezone);
-//   const valid = d.isValid();
-
-//   return [valid, valid ? d.toDate() : k];
-// };
-// const _dateOrNum = (k) => {
-//   if (isNumber(k)) return Number(k);
-
-//   const [valid, date] = _isDate(k, moment.ISO_8601);
-//   if (valid) return date;
-
-//   return k;
-// };
-
-// const _array = (k) => {
-//   if (!k) return [];
-//   if (Array.isArray(k)) return k;
-
-//   const converted = niceTry(() => JSON.parse(k));
-//   if (converted && Array.isArray(converted)) return converted;
-
-//   return _str(k)
-//     .split(',')
-//     .map((x) => x.trim());
-// };
-
-// const _includesArray = (a, b) => {
-//   if (!a || !b) return false;
-//   const a1 = _array(a);
-//   const b1 = _array(b);
-
-//   return a1.some((k) => b1.includes(k));
-// };
-
 const operators = {
   _tz: null,
-  _str: (s) => (isString(s) ? s.trim().toLowerCase() : s || ''),
+  _str: (s) => (isString(s) ? s : ''), // (isString(s) ? s.trim().toLowerCase() : s || '')
   _isDate(k, format) {
     if (!k) return [false, null];
     const timezone = this._tz || moment.tz.guess();
