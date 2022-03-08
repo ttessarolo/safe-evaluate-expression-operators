@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.2](https://bitbucket.org/ttessarolo/safe-evaluate-expression/branches/compare/v1.3.1%0Dv1.3.2) (2022-03-08)
+
+
+### Bug Fixes
+
+* internal _str now return back original obj if defined and not string ([f403ec0](https://github.com/ttessarolo/safe-evaluate-expression/commits/f403ec0779a84d1fd593ccb97caed76a0dd34d5f))
+
 ### [1.3.1](https://bitbucket.org/ttessarolo/safe-evaluate-expression/branches/compare/v1.3.0%0Dv1.3.1) (2022-03-08)
 
 
