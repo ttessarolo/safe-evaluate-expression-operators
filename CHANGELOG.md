@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://bitbucket.org/ttessarolo/safe-evaluate-expression/branches/compare/v1.3.0%0Dv1.3.1) (2022-03-08)
+
+
+### Bug Fixes
+
+* internal _str now keep string as is (no trim, no lowercase) ([d997003](https://github.com/ttessarolo/safe-evaluate-expression/commits/d997003a26693f53297bac176a967bb8c2a9435c))
+
 ## [1.3.0](https://bitbucket.org/ttessarolo/safe-evaluate-expression/branches/compare/v1.2.0%0Dv1.3.0) (2020-12-11)
 
 
