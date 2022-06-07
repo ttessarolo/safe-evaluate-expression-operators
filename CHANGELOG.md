@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.3](https://bitbucket.org/ttessarolo/safe-evaluate-expression/branches/compare/v1.3.2%0Dv1.3.3) (2022-06-07)
+
+
+### Others
+
+* update deps ([93d74ca](https://github.com/ttessarolo/safe-evaluate-expression/commits/93d74cafe44028ab45413b9869a76b393b369dd8))
+
 ### [1.3.2](https://bitbucket.org/ttessarolo/safe-evaluate-expression/branches/compare/v1.3.1%0Dv1.3.2) (2022-03-08)
 
 
