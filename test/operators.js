@@ -7,7 +7,7 @@ const evaluate = factory({
   translateLogical: true,
 });
 
-function runner({ ruleName, rule, metas, lists, expectedResult }) {
+function runner({ ruleName, rule, metas, lists = {}, expectedResult }) {
   test(`${ruleName} should return ${expectedResult} [${Math.random().toFixed(2)}]`, async (t) => {
     const result = evaluate(rule.condition, metas, lists);
     t.deepEqual(expectedResult, result);
@@ -16,6 +16,12 @@ function runner({ ruleName, rule, metas, lists, expectedResult }) {
 
 const dataProvider = {
   is: [
+    {
+      ruleName: 'isOutlier',
+      rule: { condition: '(is(isOutlier, false))' },
+      metas: { isOutlier: false },
+      expectedResult: true,
+    },
     {
       rule: { condition: 'is(foo, bar)' },
       metas: { foo: 10, bar: 10 },
