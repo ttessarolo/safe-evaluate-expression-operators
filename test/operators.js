@@ -80,6 +80,11 @@ const dataProvider = {
       metas: { one: 12, other: 100 },
       expectedResult: false,
     },
+    {
+      rule: { condition: 'greaterThan(one, other)' },
+      metas: { one: [1, 2], other: 2 },
+      expectedResult: false,
+    },
   ],
   greaterEqualThan: [
     {
@@ -91,6 +96,11 @@ const dataProvider = {
       rule: { condition: 'greaterEqualThan(one, other)' },
       metas: { one: 12, other: 13 },
       expectedResult: false,
+    },
+    {
+      rule: { condition: 'greaterEqualThan(one, other)' },
+      metas: { one: [1, 2], other: 2 },
+      expectedResult: true,
     },
   ],
   lessThan: [

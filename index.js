@@ -19,6 +19,7 @@ const operators = {
   },
   _dateOrNum(k) {
     if (isNumber(k)) return Number(k);
+    if (Array.isArray(k)) return k.length;
 
     const [valid, date] = this._isDate(k, moment.ISO_8601);
     if (valid) return date;
