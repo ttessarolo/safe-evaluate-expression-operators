@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://bitbucket.org/ttessarolo/safe-evaluate-expression/branches/compare/v1.3.3%0Dv1.4.0) (2025-03-20)
+
+
+### Features
+
+* math operators >,<, >= etc. support arrays obj, where lenght is considered ([b5b83d8](https://github.com/ttessarolo/safe-evaluate-expression/commits/b5b83d8005add8e0c5fc8ca2ad4797edc0c4ca3f))
+
 ### [1.3.3](https://bitbucket.org/ttessarolo/safe-evaluate-expression/branches/compare/v1.3.2%0Dv1.3.3) (2022-06-07)
 
 
