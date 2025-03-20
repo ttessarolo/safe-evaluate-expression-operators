@@ -58,8 +58,8 @@
     "eslint-plugin-react-hooks": "^4.0.0",
     "husky": "^4.3.0",
     "nyc": "^15.1.0",
-    "standard-version": "^9.0.0",
-    "safe-evaluate-expression": "^1.7.0"
+    "safe-evaluate-expression": "^1.7.0",
+    "standard-version": "^9.0.0"
   },
   "config": {
     "commitizen": {
