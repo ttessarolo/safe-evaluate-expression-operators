@@ -40,26 +40,26 @@
   "dependencies": {
     "is-number": "^7.0.0",
     "lodash.isstring": "^4.0.1",
-    "moment-timezone": "^0.5.32",
+    "moment-timezone": "^0.5.47",
     "nice-try": "^2.1.0"
   },
   "devDependencies": {
-    "ava": "^3.13.0",
-    "codecov": "^3.8.1",
-    "commitizen": "^4.2.2",
+    "ava": "^3.15.0",
+    "codecov": "^3.8.2",
+    "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
     "deep-cleaner": "^1.2.1",
-    "eslint": "^7.2.0",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^6.15.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^4.0.0",
-    "husky": "^4.3.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "husky": "^4.3.8",
     "nyc": "^15.1.0",
-    "safe-evaluate-expression": "^1.7.0",
-    "standard-version": "^9.0.0"
+    "safe-evaluate-expression": "^1.7.5",
+    "standard-version": "^9.5.0"
   },
   "config": {
     "commitizen": {

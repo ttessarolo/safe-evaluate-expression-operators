@@ -88,7 +88,7 @@ const operators = {
 
     if (!valid) return false;
 
-    const [date1, date2] = range.split('÷');
+    const [date1, date2] = range.replaceAll('_', '-').split('÷');
     return moment(date).isBetween(date1, date2);
   },
   range(d, period) {
