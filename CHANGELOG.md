@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.2](https://bitbucket.org/ttessarolo/safe-evaluate-expression/branches/compare/v1.4.1%0Dv1.4.2) (2025-03-27)
+
+
+### Others
+
+* updated deps (+ normilize range in DateRange operator replaceAll('_', '-')) ([8ac76ec](https://github.com/ttessarolo/safe-evaluate-expression/commits/8ac76ecaaafbb5254b5296ade3d85911108a0c8c))
+
 ### [1.4.1](https://bitbucket.org/ttessarolo/safe-evaluate-expression/branches/compare/v1.4.0%0Dv1.4.1) (2025-03-20)
 
 
